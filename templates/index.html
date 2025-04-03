@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        .section { margin-bottom: 20px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .section h3 { margin-top: 0; }
+        .btn { padding: 10px 15px; background: #28a745; color: white; border: none; cursor: pointer; }
+        .btn:hover { background: #218838; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Select Symptoms:</h2>
+        <form method="POST">
+            
+            <div class="section">
+                <h3>General Symptoms</h3>
+                {% for symptom in general_symptoms %}
+                    <input type="checkbox" name="{{ symptom }}"> {{ symptom }}<br>
+                {% endfor %}
+            </div>
+
+            <div class="section">
+                <h3>Skin-Related Symptoms</h3>
+                {% for symptom in skin_symptoms %}
+                    <input type="checkbox" name="{{ symptom }}"> {{ symptom }}<br>
+                {% endfor %}
+            </div>
+
+            <div class="section">
+                <h3>Respiratory Symptoms</h3>
+                {% for symptom in respiratory_symptoms %}
+                    <input type="checkbox" name="{{ symptom }}"> {{ symptom }}<br>
+                {% endfor %}
+            </div>
+
+            <div class="section">
+                <h3>Digestive Symptoms</h3>
+                {% for symptom in digestive_symptoms %}
+                    <input type="checkbox" name="{{ symptom }}"> {{ symptom }}<br>
+                {% endfor %}
+            </div>
+
+            <div class="section">
+                <h3>Neurological & Others</h3>
+                {% for symptom in neurological_symptoms %}
+                    <input type="checkbox" name="{{ symptom }}"> {{ symptom }}<br>
+                {% endfor %}
+            </div>
+
+            <br>
+            <input type="submit" class="btn" value="Predict">
+        </form>
+
+        {% if prediction %}
+            <h3>Predicted Disease: {{ prediction }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>
