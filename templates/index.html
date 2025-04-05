@@ -3,66 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disease Prediction</title>
+    <title>Disease Prediction System</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="static/style.css">
-    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .container { max-width: 600px; margin: auto; }
-        .section { margin-bottom: 20px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
-        .section h3 { margin-top: 0; }
-        .btn { padding: 10px 15px; background: #28a745; color: white; border: none; cursor: pointer; }
-        .btn:hover { background: #218838; }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h2>Select Symptoms:</h2>
+        <h1>Disease Prediction System</h1>
         <form method="POST">
             
             <div class="section">
                 <h3>General Symptoms</h3>
                 {% for symptom in general_symptoms %}
-                    <input type="checkbox" name="{{ symptom }}"> {{ symptom }}<br>
+                    <input type="checkbox" id="{{ symptom }}" name="{{ symptom }}">
+                    <label for="{{ symptom }}">{{ symptom }}</label>
                 {% endfor %}
             </div>
 
             <div class="section">
                 <h3>Skin-Related Symptoms</h3>
                 {% for symptom in skin_symptoms %}
-                    <input type="checkbox" name="{{ symptom }}"> {{ symptom }}<br>
+                    <input type="checkbox" id="{{ symptom }}" name="{{ symptom }}">
+                    <label for="{{ symptom }}">{{ symptom }}</label>
                 {% endfor %}
             </div>
 
             <div class="section">
                 <h3>Respiratory Symptoms</h3>
                 {% for symptom in respiratory_symptoms %}
-                    <input type="checkbox" name="{{ symptom }}"> {{ symptom }}<br>
+                    <input type="checkbox" id="{{ symptom }}" name="{{ symptom }}">
+                    <label for="{{ symptom }}">{{ symptom }}</label>
                 {% endfor %}
             </div>
 
             <div class="section">
                 <h3>Digestive Symptoms</h3>
                 {% for symptom in digestive_symptoms %}
-                    <input type="checkbox" name="{{ symptom }}"> {{ symptom }}<br>
+                    <input type="checkbox" id="{{ symptom }}" name="{{ symptom }}">
+                    <label for="{{ symptom }}">{{ symptom }}</label>
                 {% endfor %}
             </div>
 
             <div class="section">
                 <h3>Neurological & Others</h3>
                 {% for symptom in neurological_symptoms %}
-                    <input type="checkbox" name="{{ symptom }}"> {{ symptom }}<br>
+                    <input type="checkbox" id="{{ symptom }}" name="{{ symptom }}">
+                    <label for="{{ symptom }}">{{ symptom }}</label>
                 {% endfor %}
             </div>
 
-            <br>
-            <input type="submit" class="btn" value="Predict">
+            <button type="submit" class="btn">Predict Disease</button>
         </form>
 
         {% if prediction %}
-            <h3>Predicted Disease: {{ prediction }}</h3>
+            <div id="result" class="result-normal show">
+                <h3>Predicted Disease: {{ prediction }}</h3>
+                <p>This prediction is based on the symptoms you've selected. Please consult a healthcare professional for proper diagnosis.</p>
+            </div>
+        {% else %}
+            <div id="result"></div>
         {% endif %}
     </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
