@@ -1,0 +1,356 @@
+/* Main CSS for Disease Prediction Website */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #4361ee;
+  --primary-light: #4895ef;
+  --secondary: #3f37c9;
+  --accent: #4cc9f0;
+  --success: #4ade80;
+  --danger: #f87171;
+  --warning: #fbbf24;
+  --light: #f9fafb;
+  --dark: #1e293b;
+  --gray: #94a3b8;
+  --white: #ffffff;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0f5ff;
+  color: var(--dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header Styles */
+h1, h2, h3 {
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  border-radius: 2px;
+}
+
+/* Form Styles */
+form {
+  margin-top: 2rem;
+}
+
+.accordion {
+  margin-bottom: 2rem;
+}
+
+/* Section Styles */
+.section {
+  background-color: var(--white);
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+}
+
+.section:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.section h3 {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 1rem 1.5rem;
+  margin: 0;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.section h3::after {
+  content: '\002B';
+  font-size: 1.5rem;
+  margin-left: auto;
+  transition: var(--transition);
+}
+
+.section.active h3::after {
+  content: '\2212';
+}
+
+.section-content {
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.section.active .section-content {
+  padding: 1.5rem;
+  max-height: 1000px;
+}
+
+/* Checkbox Styles */
+.symptom-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.symptom-item:hover {
+  background-color: #f1f5f9;
+}
+
+.symptom-item input[type="checkbox"] {
+  display: none;
+}
+
+.symptom-item label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.custom-checkbox {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--gray);
+  border-radius: 6px;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.symptom-item input[type="checkbox"]:checked + label .custom-checkbox {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.custom-checkbox::after {
+  content: '';
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) scale(0);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.symptom-item input[type="checkbox"]:checked + label .custom-checkbox::after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+
+/* Button Styles */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(to right, var(--primary), var(--primary-light));
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+}
+
+.btn:hover {
+  background: linear-gradient(to right, var(--secondary), var(--primary));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+/* Result Styles */
+#result, .prediction {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #ebf5ff;
+  border-radius: 12px;
+  border-left: 5px solid var(--primary);
+  font-weight: 500;
+  box-shadow: var(--shadow);
+  animation: slideUp 0.5s ease-out;
+  display: none;
+}
+
+#result.show, .prediction {
+  display: block;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+    margin: 1rem;
+    border-radius: 12px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .symptom-item label {
+    font-size: 0.9rem;
+  }
+}
+
+/* Loading Animation */
+.loader {
+  display: none;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.loader.show {
+  display: block;
+}
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid var(--primary);
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Additional Animations */
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Tooltip Styles */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.tooltip .material-icons {
+  font-size: 18px;
+  color: var(--gray);
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: var(--dark);
+  color: var(--white);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.8rem;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
