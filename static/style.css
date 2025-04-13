@@ -16,6 +16,9 @@
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Import Poppins font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -27,7 +30,7 @@ body {
   background-color: var(--background);
   color: var(--text);
   line-height: 1.6;
-  overflow-x: hidden;
+  padding: 20px;
 }
 
 .container {
@@ -77,8 +80,12 @@ h1::after {
   border-radius: 2px;
 }
 
+form {
+  position: relative;
+}
+
 .section {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem; /* Reduced from 1.5rem */
   padding: 1.5rem;
   border-radius: var(--border-radius);
   background-color: var(--surface);
@@ -88,6 +95,7 @@ h1::after {
   transform: translateX(-10px);
   opacity: 0;
   animation: slideIn 0.5s ease-out forwards;
+  animation-delay: calc(var(--i, 0) * 0.1s);
 }
 
 .section:hover {
@@ -108,6 +116,7 @@ h1::after {
   display: flex;
   align-items: center;
   font-size: 1.2rem;
+  margin-bottom: 0;
 }
 
 .section h3::before {
@@ -124,6 +133,7 @@ h1::after {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 10px;
+  margin-top: 15px;
 }
 
 .checkbox-wrapper {
@@ -245,6 +255,11 @@ h1::after {
   transform: translateY(1px);
 }
 
+.btn:disabled {
+  background: linear-gradient(90deg, #a5a6f3, #8e8fd9);
+  cursor: not-allowed;
+}
+
 #result {
   margin-top: 2rem;
   padding: 1.5rem;
@@ -257,30 +272,15 @@ h1::after {
   transition: var(--transition);
 }
 
-#result.show {
+#result:not(:empty) {
   opacity: 1;
   transform: scale(1);
-}
-
-.result-normal {
   background-color: #e2f8f0;
   color: #065f46;
   border-left: 4px solid var(--secondary);
 }
 
-.result-warning {
-  background-color: #fef9c3;
-  color: #854d0e;
-  border-left: 4px solid #eab308;
-}
-
-.result-danger {
-  background-color: #fee2e2;
-  color: #991b1b;
-  border-left: 4px solid var(--error);
-}
-
-/* Accordion effect */
+/* Accordion effect - FIXED */
 .section-header {
   cursor: pointer;
   display: flex;
@@ -302,10 +302,13 @@ h1::after {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease-out;
+  padding-top: 0;
+  margin-top: 0;
 }
 
 .section.active .section-content {
-  max-height: 1000px;
+  padding-top: 15px;
+  /* max-height will be set dynamically with JS */
 }
 
 /* Loader */
@@ -324,6 +327,45 @@ h1::after {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Progress indicator */
+.progress-indicator {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #f1f5f9;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.progress-bar {
+  height: 8px;
+  background-color: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, #cbd5e1, var(--primary));
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.progress-indicator.sufficient .progress {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.progress-text {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  text-align: center;
+}
+
+.progress-indicator.sufficient .progress-text {
+  color: var(--secondary);
+  font-weight: 500;
 }
 
 /* Responsive */

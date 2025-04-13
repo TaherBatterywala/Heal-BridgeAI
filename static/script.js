@@ -1,49 +1,63 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Animation delay for sections
-    const sections = document.querySelectorAll('.section');
-    sections.forEach((section, index) => {
-        section.style.animationDelay = `${0.1 + index * 0.1}s`;
-    });
-
     // Setup accordion functionality
     setupAccordion();
     
     // Setup form submission
     setupForm();
     
-    // Convert ugly checkbox inputs
+    // Convert standard checkboxes to enhanced checkboxes
     enhanceCheckboxes();
+    
+    // Initialize symptom count
+    setTimeout(updateSymptomCount, 500);
 });
 
-// Create accordion effect for symptom sections
+// Create accordion effect for symptom categories
 function setupAccordion() {
-    const sections = document.querySelectorAll('.section');
+    // Create sections for each symptom category
+    const form = document.querySelector('form');
+    const categories = form.querySelectorAll('h3');
     
-    sections.forEach(section => {
+    categories.forEach((category, index) => {
+        // Create a section for each category
+        const section = document.createElement('div');
+        section.className = 'section';
+        section.style.setProperty('--i', index); // For animation delay
+        
+        // Find all elements until the next h3
+        const siblings = [];
+        let nextElement = category.nextElementSibling;
+        
+        while (nextElement && nextElement.tagName !== 'H3' && nextElement.tagName !== 'INPUT') {
+            siblings.push(nextElement);
+            nextElement = nextElement.nextElementSibling;
+        }
+        
         // Create header element
-        const title = section.querySelector('h3');
+        const header = document.createElement('div');
+        header.className = 'section-header';
+        
+        // Create content container
         const content = document.createElement('div');
         content.className = 'section-content';
         
-        // Move all elements except the title into content
-        Array.from(section.children).forEach(child => {
-            if (child !== title) {
-                content.appendChild(child);
-            }
-        });
-        
-        // Create header wrapper
-        const header = document.createElement('div');
-        header.className = 'section-header';
-        section.insertBefore(header, title);
-        header.appendChild(title);
-        
+        // Move elements to their new containers
+        form.insertBefore(section, category);
+        header.appendChild(category);
+        section.appendChild(header);
         section.appendChild(content);
         
+        siblings.forEach(sibling => {
+            content.appendChild(sibling);
+        });
+        
         // Set first section as active by default
-        if (section === sections[0]) {
+        if (index === 0) {
             section.classList.add('active');
-            content.style.maxHeight = content.scrollHeight + 'px';
+            // Calculate actual content height
+            setTimeout(() => {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }, 0);
         }
         
         // Add click event
@@ -51,7 +65,7 @@ function setupAccordion() {
             const isActive = section.classList.contains('active');
             
             // Close all sections
-            sections.forEach(s => {
+            document.querySelectorAll('.section').forEach(s => {
                 s.classList.remove('active');
                 s.querySelector('.section-content').style.maxHeight = null;
             });
@@ -59,144 +73,108 @@ function setupAccordion() {
             // If it wasn't active, open it
             if (!isActive) {
                 section.classList.add('active');
-                content.style.maxHeight = content.scrollHeight + 'px';
+                // Calculate actual content height - small delay for DOM update
+                setTimeout(() => {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }, 0);
             }
         });
     });
+    
+    // Move the submit button outside sections
+    const submitBtn = form.querySelector('input[type="submit"]');
+    form.appendChild(submitBtn);
+    
+    // Add a container for the result if it doesn't exist
+    if (!document.getElementById('result')) {
+        const resultDiv = document.createElement('div');
+        resultDiv.id = 'result';
+        form.parentNode.insertBefore(resultDiv, form.nextSibling);
+    }
 }
 
 // Enhance checkboxes with custom styling
 function enhanceCheckboxes() {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const checkboxContainers = document.querySelectorAll('.section-content');
     
-    checkboxes.forEach(checkbox => {
-        const originalLabel = checkbox.nextSibling;
-        const labelText = originalLabel.textContent.trim();
+    checkboxContainers.forEach(container => {
+        // Create a grid for checkboxes
+        const checkboxesGrid = document.createElement('div');
+        checkboxesGrid.className = 'checkboxes';
+        container.prepend(checkboxesGrid);
         
-        // Create wrapper
-        const wrapper = document.createElement('label');
-        wrapper.className = 'checkbox-wrapper';
+        // Find all checkbox inputs
+        const inputs = container.querySelectorAll('input[type="checkbox"]');
         
-        // Create custom checkmark
-        const checkmark = document.createElement('span');
-        checkmark.className = 'checkmark';
-        
-        // Create label text
-        const label = document.createElement('span');
-        label.className = 'symptom-label';
-        label.textContent = formatSymptomName(labelText);
-        
-        // Replace original elements
-        checkbox.parentNode.insertBefore(wrapper, checkbox);
-        wrapper.appendChild(checkbox);
-        wrapper.appendChild(checkmark);
-        wrapper.appendChild(label);
-        
-        originalLabel.remove();
-    });
-    
-    // Organize checkboxes in grid
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => {
-        const content = section.querySelector('.section-content');
-        const checkboxesContainer = document.createElement('div');
-        checkboxesContainer.className = 'checkboxes';
-        
-        // Move all checkbox wrappers to the grid container
-        const wrappers = Array.from(content.querySelectorAll('.checkbox-wrapper'));
-        wrappers.forEach(wrapper => {
-            checkboxesContainer.appendChild(wrapper);
+        inputs.forEach(input => {
+            const originalLabel = input.nextSibling;
+            const labelText = originalLabel.textContent.trim();
+            
+            // Create wrapper
+            const wrapper = document.createElement('label');
+            wrapper.className = 'checkbox-wrapper';
+            
+            // Create custom checkmark
+            const checkmark = document.createElement('span');
+            checkmark.className = 'checkmark';
+            
+            // Create label text
+            const label = document.createElement('span');
+            label.className = 'symptom-label';
+            label.textContent = labelText;
+            
+            // Add wrapper to grid
+            checkboxesGrid.appendChild(wrapper);
+            
+            // Add elements to wrapper
+            wrapper.appendChild(input);
+            wrapper.appendChild(checkmark);
+            wrapper.appendChild(label);
+            
+            // Remove original label
+            originalLabel.remove();
+            
+            // Add event listener to update count when clicked
+            input.addEventListener('change', updateSymptomCount);
         });
-        
-        content.prepend(checkboxesContainer);
     });
 }
 
-// Format symptom names for better readability
-function formatSymptomName(name) {
-    return name
-        .replace(/_/g, ' ')
-        .split(' ')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-}
-
-// Setup form submission with animations
+// Setup form submission
 function setupForm() {
     const form = document.querySelector('form');
-    const resultElement = document.getElementById('result');
+    
+    // Change submit button to a nicer button
+    const oldSubmit = form.querySelector('input[type="submit"]');
+    const submitBtn = document.createElement('button');
+    submitBtn.type = 'submit';
+    submitBtn.className = 'btn';
+    submitBtn.textContent = 'Predict Disease'; // Changed button text
+    form.replaceChild(submitBtn, oldSubmit);
     
     // Create loader element
     const loader = document.createElement('div');
     loader.className = 'loader';
     form.appendChild(loader);
     
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        // Show loader
-        const submitBtn = form.querySelector('input[type="submit"], button[type="submit"]');
-        submitBtn.style.display = 'none';
+    // Add result container if it doesn't exist
+    if (!document.getElementById('result')) {
+        const resultElement = document.createElement('div');
+        resultElement.id = 'result';
+        form.parentNode.insertBefore(resultElement, form.nextSibling);
+    }
+    
+    // Handle form submission
+    form.addEventListener('submit', function(e) {
+        // You can add form validation here if needed
+        // Show loader on submit
         loader.style.display = 'block';
-        
-        // If this were a real form submission:
-        // const formData = new FormData(form);
-        // const response = await fetch('/predict', { method: 'POST', body: formData });
-        // const data = await response.json();
-        
-        // Simulate processing
-        setTimeout(() => {
-            // Hide loader
-            loader.style.display = 'none';
-            submitBtn.style.display = 'block';
-            
-            // Show result (in a real app, this would use the actual response)
-            if (countCheckedSymptoms() < 3) {
-                showResult('Please select at least 3 symptoms for accurate prediction', 'warning');
-            } else {
-                // This would be replaced with actual prediction from backend
-                const diseases = ['Common Cold', 'Influenza', 'Allergic Rhinitis', 'Bronchitis'];
-                const randomDisease = diseases[Math.floor(Math.random() * diseases.length)];
-                
-                showResult(`Predicted Disease: ${randomDisease}`, 'normal');
-                
-                // In the actual app, you would access the prediction from Flask
-                // showResult(`Predicted Disease: ${data.prediction}`, getSeverityClass(data.prediction));
-            }
-        }, 1500);
+        submitBtn.style.display = 'none';
     });
-    
-    // Helper to count checked symptoms
-    function countCheckedSymptoms() {
-        return document.querySelectorAll('input[type="checkbox"]:checked').length;
-    }
-    
-    // Helper to show result with animation
-    function showResult(message, type) {
-        resultElement.textContent = message;
-        resultElement.className = '';
-        resultElement.classList.add('result-' + type);
-        
-        // Force reflow for animation
-        void resultElement.offsetWidth;
-        
-        resultElement.classList.add('show');
-    }
-    
-    // Helper to determine severity class (would use actual disease data)
-    function getSeverityClass(disease) {
-        const severeConditions = ['Tuberculosis', 'Pneumonia', 'Heart attack', 'Jaundice'];
-        const moderateConditions = ['Dengue', 'Typhoid', 'Malaria', 'Gastroenteritis'];
-        
-        if (severeConditions.includes(disease)) return 'danger';
-        if (moderateConditions.includes(disease)) return 'warning';
-        return 'normal';
-    }
 }
 
-// Add progress indicator when many symptoms are selected
+// Add progress indicator when symptoms are selected
 function updateSymptomCount() {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
     
     // Create or update progress indicator
@@ -205,10 +183,8 @@ function updateSymptomCount() {
     if (!progressIndicator) {
         progressIndicator = document.createElement('div');
         progressIndicator.className = 'progress-indicator';
-        document.querySelector('.container').insertBefore(
-            progressIndicator, 
-            document.querySelector('form').nextSibling
-        );
+        const form = document.querySelector('form');
+        form.insertBefore(progressIndicator, form.querySelector('.section:first-child'));
     }
     
     const percentage = Math.min(100, Math.round((checkedCount / 3) * 100));
@@ -224,7 +200,7 @@ function updateSymptomCount() {
     if (checkedCount >= 3) progressIndicator.classList.add('sufficient');
     
     // Update submit button state
-    const submitButton = document.querySelector('input[type="submit"], button[type="submit"]');
+    const submitButton = document.querySelector('button[type="submit"]');
     if (submitButton) {
         if (checkedCount < 3) {
             submitButton.disabled = true;
@@ -236,16 +212,13 @@ function updateSymptomCount() {
             submitButton.title = '';
         }
     }
+    
+    // Update section content heights for active sections
+    document.querySelectorAll('.section.active').forEach(section => {
+        const content = section.querySelector('.section-content');
+        // Small delay to ensure DOM is updated
+        setTimeout(() => {
+            content.style.maxHeight = content.scrollHeight + 'px';
+        }, 10);
+    });
 }
-
-// Add event listeners to all checkboxes to update count
-document.addEventListener('change', function(e) {
-    if (e.target.type === 'checkbox') {
-        updateSymptomCount();
-    }
-});
-
-// Initialize symptom count on page load
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(updateSymptomCount, 500); // Delay to ensure all checkboxes are enhanced
-});
