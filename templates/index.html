@@ -14,23 +14,23 @@
             
             <div class="section">
                 <h3>General Symptoms</h3>
-                {% for symptom in general_symptoms %}
+                {% for symptom in general_issues %}
                     <input type="checkbox" id="{{ symptom }}" name="{{ symptom }}">
                     <label for="{{ symptom }}">{{ symptom }}</label>
                 {% endfor %}
             </div>
 
             <div class="section">
-                <h3>Skin-Related Symptoms</h3>
-                {% for symptom in skin_symptoms %}
+                <h3>Skin & Appearance Related Symptoms</h3>
+                {% for symptom in skin_appearance_issues %}
                     <input type="checkbox" id="{{ symptom }}" name="{{ symptom }}">
                     <label for="{{ symptom }}">{{ symptom }}</label>
                 {% endfor %}
             </div>
 
             <div class="section">
-                <h3>Respiratory Symptoms</h3>
-                {% for symptom in respiratory_symptoms %}
+                <h3>Respiratory & ENT Symptoms</h3>
+                {% for symptom in respiratory_ent_issues %}
                     <input type="checkbox" id="{{ symptom }}" name="{{ symptom }}">
                     <label for="{{ symptom }}">{{ symptom }}</label>
                 {% endfor %}
@@ -38,15 +38,31 @@
 
             <div class="section">
                 <h3>Digestive Symptoms</h3>
-                {% for symptom in digestive_symptoms %}
+                {% for symptom in digestive_issues %}
                     <input type="checkbox" id="{{ symptom }}" name="{{ symptom }}">
                     <label for="{{ symptom }}">{{ symptom }}</label>
                 {% endfor %}
             </div>
 
             <div class="section">
-                <h3>Neurological & Others</h3>
-                {% for symptom in neurological_symptoms %}
+                <h3>Neuromuscular Symptoms</h3>
+                {% for symptom in neuro_muscular_issues %}
+                    <input type="checkbox" id="{{ symptom }}" name="{{ symptom }}">
+                    <label for="{{ symptom }}">{{ symptom }}</label>
+                {% endfor %}
+            </div>
+
+            <div class="section">
+                <h3>Urine, Hormonal & Reproductive Symptoms</h3>
+                {% for symptom in urine_hormone_repro_issues %}
+                    <input type="checkbox" id="{{ symptom }}" name="{{ symptom }}">
+                    <label for="{{ symptom }}">{{ symptom }}</label>
+                {% endfor %}
+            </div>
+
+            <div class="section">
+                <h3>Mental Health & Heart Related Symptoms</h3>
+                {% for symptom in mental_heart_issues %}
                     <input type="checkbox" id="{{ symptom }}" name="{{ symptom }}">
                     <label for="{{ symptom }}">{{ symptom }}</label>
                 {% endfor %}
