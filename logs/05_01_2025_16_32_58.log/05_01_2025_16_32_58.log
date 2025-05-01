@@ -1,0 +1,20 @@
+[ 2025-05-01 16:32:59,820 ] 31 root - INFO - Entered the data ingestion method or component
+[ 2025-05-01 16:32:59,850 ] 36 root - INFO - Read the dataset as dataframe
+[ 2025-05-01 16:32:59,924 ] 42 root - INFO - Train test split initiated
+[ 2025-05-01 16:32:59,990 ] 49 root - INFO - Ingestion of the data iss completed
+[ 2025-05-01 16:33:00,040 ] 89 root - INFO - Read train and test data completed
+[ 2025-05-01 16:33:00,040 ] 91 root - INFO - Obtaining preprocessing object
+[ 2025-05-01 16:33:00,040 ] 66 root - INFO - Categorical columns: []
+[ 2025-05-01 16:33:00,040 ] 67 root - INFO - Numerical columns: ['fatigue', 'headache', 'high_fever', 'mild_fever', 'sweating', 'dehydration', 'lethargy', 'malaise', 'swelled_lymph_nodes', 'fast_heart_rate', 'weight_gain', 'weight_loss', 'restlessness', 'cramps', 'chills', 'shivering', 'sunken_eyes', 'itching', 'skin_rash', 'nodal_skin_eruptions', 'pus_filled_pimples', 'blackheads', 'scurring', 'skin_peeling', 'silver_like_dusting', 'small_dents_in_nails', 'inflammatory_nails', 'blister', 'red_sore_around_nose', 'yellow_crust_ooze', 'puffy_face_and_eyes', 'brittle_nails', 'swollen_extremeties', 'yellowish_skin', 'continuous_sneezing', 'cough', 'breathlessness', 'phlegm', 'throat_irritation', 'redness_of_eyes', 'sinus_pressure', 'runny_nose', 'congestion', 'chest_pain', 'rusty_sputum', 'blood_in_sputum', 'watering_from_eyes', 'loss_of_smell', 'pain_behind_the_eyes', 'yellowing_of_eyes', 'vomiting', 'stomach_pain', 'indigestion', 'nausea', 'loss_of_appetite', 'diarrhoea', 'constipation', 'abdominal_pain', 'yellow_urine', 'dark_urine', 'acidity', 'passage_of_gases', 'pain_during_bowel_movements', 'bloody_stool', 'dizziness', 'loss_of_balance', 'unsteadiness', 'stiff_neck', 'visual_disturbances', 'muscle_wasting', 'muscle_weakness', 'joint_pain', 'back_pain', 'neck_pain', 'swollen_legs', 'swollen_blood_vessels', 'muscle_pain', 'painful_walking', 'pain_in_anal_region', 'weakness_in_limbs', 'burning_micturition', 'irregular_sugar_level', 'polyuria', 'bladder_discomfort', 'abnormal_menstruation', 'cold_hands_and_feets', 'enlarged_thyroid', 'increased_appetite', 'excessive_hunger', 'obesity', 'irritation_in_anus', 'anxiety', 'mood_swings', 'depression', 'irritability', 'palpitations', 'prominent_veins_on_calf']
+[ 2025-05-01 16:33:00,040 ] 97 root - INFO - Train columns: Index(['itching', 'skin_rash', 'nodal_skin_eruptions', 'continuous_sneezing',
+       'shivering', 'chills', 'joint_pain', 'stomach_pain', 'acidity',
+       'ulcers_on_tongue',
+       ...
+       'blackheads', 'scurring', 'skin_peeling', 'silver_like_dusting',
+       'small_dents_in_nails', 'inflammatory_nails', 'blister',
+       'red_sore_around_nose', 'yellow_crust_ooze', 'prognosis'],
+      dtype='object', length=133)
+[ 2025-05-01 16:33:00,040 ] 108 root - INFO - Applying preprocessing object on training dataframe and testing dataframe.
+[ 2025-05-01 16:33:00,083 ] 126 root - INFO - Saved preprocessing object.
+[ 2025-05-01 16:33:00,083 ] 41 root - INFO - Split training and test input data
+[ 2025-05-01 16:33:26,875 ] 145 root - INFO - Best found model on both training and testing dataset
