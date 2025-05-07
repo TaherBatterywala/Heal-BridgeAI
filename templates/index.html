@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disease Predictor - Home</title>
+    <title>HealBridge AI - Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -12,11 +12,11 @@
         <div class="nav-content">
             <a href="/" class="logo">
                 <i class="fas fa-heartbeat"></i>
-                Disease Predictor
+                HealBridge AI
             </a>
             <div class="nav-links">
                 <a href="/" class="active">Home</a>
-                <a href="/predict">Predict</a>
+                <a href="/predict">Know Your Disease</a>
                 <a href="/about">About Us</a>
             </div>
         </div>
@@ -25,9 +25,10 @@
     <div class="main-content">
         <div class="container">
             <div class="hero">
-                <h1>Welcome to Disease Predictor</h1>
+                <h1>Welcome to HealBridge AI</h1>
+                <p>Your bridge from symptoms to doctor</p>
                 <p>An intelligent system that helps you identify potential diseases based on your symptoms</p>
-                <a href="/predict" class="btn">Start Prediction</a>
+                <a href="/predict" class="btn">Know Your Disease</a>
             </div>
 
             <div class="features">
@@ -48,27 +49,25 @@
                 </div>
             </div>
 
-            <div class="instructions">
+            <section class="instructions">
                 <h2>How to Use</h2>
-                <ol>
-                    <li>Click on "Start Prediction" or navigate to the Predict page</li>
-                    <li>Select your symptoms from the categorized list</li>
-                    <li>Choose at least 3 symptoms for accurate prediction</li>
-                    <li>Click "Predict Disease" to get your results</li>
-                    <li>Use the chatbot to learn more about your predicted disease</li>
-                </ol>
-            </div>
-
-            <div class="future-features">
-                <h2>Coming Soon</h2>
                 <ul>
-                    <li>Detailed disease summaries and treatment information</li>
-                    <li>AI-powered chatbot for disease-related queries</li>
-                    <li>Integration with nearby doctors and medical centers</li>
-                    <li>Multilingual support for global accessibility</li>
-                    <li>Mobile app for on-the-go predictions</li>
+                    <li>Go to the Predict page.</li>
+                    <li>Select at least 3 symptoms from the list.</li>
+                    <li>Click the Predict button to see your result.</li>
                 </ul>
-            </div>
+            </section>
+
+            <section class="instructions">
+                <h2>Coming Soon Features</h2>
+                <ul>
+                    <li>AI chatbot for instant health guidance and support.</li>
+                    <li>Detailed disease descriptions and treatment information.</li>
+                    <li>Multilingual support for global accessibility.</li>
+                    <li>Find specialized doctors for your condition.</li>
+                    <li>Locate nearby hospitals and medical centers.</li>
+                </ul>
+            </section>
         </div>
     </div>
 </body>

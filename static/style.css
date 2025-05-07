@@ -140,9 +140,21 @@ body {
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
   text-align: left;
+  position: relative;
+  padding-bottom: 0.5rem;
 }
 
-.instructions ol, .future-features ul {
+.instructions h2::after, .future-features h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--primary);
+}
+
+.instructions ul, .future-features ul {
   padding-left: 2rem;
   margin: 0;
   list-style-type: disc;
@@ -151,6 +163,8 @@ body {
 .instructions li, .future-features li {
   margin-bottom: 1rem;
   line-height: 1.6;
+  font-size: 1.1rem;
+  color: var(--text);
 }
 
 /* Remove the box styles */
@@ -158,6 +172,32 @@ body {
   background: none;
   box-shadow: none;
   padding: 0;
+}
+
+/* Remove the future-features specific styles */
+.future-features li {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  color: var(--text);
+  display: block;
+  padding: 0;
+  border-radius: 0;
+  transition: none;
+}
+
+.future-features li:hover {
+  background: none;
+  transform: none;
+}
+
+.future-features li i {
+  display: none;
+}
+
+.future-features li strong {
+  color: var(--text);
+  font-weight: normal;
 }
 
 /* Predict page header */

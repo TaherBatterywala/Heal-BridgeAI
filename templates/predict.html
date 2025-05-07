@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disease Predictor - Predict</title>
+    <title>HealBridge AI - Know Your Disease</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -12,11 +12,11 @@
         <div class="nav-content">
             <a href="/" class="logo">
                 <i class="fas fa-heartbeat"></i>
-                Disease Predictor
+                HealBridge AI
             </a>
             <div class="nav-links">
                 <a href="/">Home</a>
-                <a href="/predict" class="active">Predict</a>
+                <a href="/predict" class="active">Know Your Disease</a>
                 <a href="/about">About Us</a>
             </div>
         </div>
@@ -25,8 +25,11 @@
     <div class="main-content">
         <div class="container">
             <div class="predict-header">
-                <h1>Predict Disease</h1>
-                <p class="subtitle">Select your symptoms from the list below</p>
+                <h1>Know Your Disease</h1>
+                <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;">
+                    <span class="subtitle" style="font-size: 1.3rem; font-weight: bold;">Select your symptoms from the list below</span>
+                    <span class="symptom-count" style="font-size: 1.1rem; font-weight: bold; color: var(--primary); background: none; padding: 0; margin: 0;">Selected Symptoms: <span id="symptom-count">0</span></span>
+                </div>
             </div>
             
             {% if error %}
@@ -57,16 +60,12 @@
                     {% endfor %}
                 </div>
                 
-                <div class="symptom-count">
-                    Selected Symptoms: <span id="symptom-count">0</span>
-                </div>
-                
-                <button type="submit" class="btn" id="predict-btn" disabled>Predict Disease</button>
+                <button type="submit" class="btn" id="predict-btn" disabled>Know Your Disease</button>
             </form>
 
             {% if prediction %}
             <div id="result">
-                <h2>Predicted Disease: {{ prediction }}</h2>
+                <h2>Possible Disease: {{ prediction }}</h2>
                 <div class="disease-info">
                     <h3>About this Disease</h3>
                     <p>Detailed information about the disease will be available soon.</p>
