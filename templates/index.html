@@ -3,31 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disease Predictor</title>
+    <title>Disease Predictor - Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Disease Predictor</h1>
-        <form method="POST">
-            {% for category, symptoms in categorized_symptoms.items() %}
-            <h3>{{ category }}</h3>
-            {% for symptom in symptoms %}
-            <label>
-                <input type="checkbox" name="{{ symptom }}" /> {{ symptom.replace('_', ' ').title() }}
-            </label><br>
-            {% endfor %}
-            <br>
-            {% endfor %}
-            <input type="submit" value="Predict Disease" />
-        </form>
-
-        {% if prediction %}
-        <div id="result">
-            <h2>Predicted Disease: {{ prediction }}</h2>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="/" class="logo">
+                <i class="fas fa-heartbeat"></i>
+                Disease Predictor
+            </a>
+            <div class="nav-links">
+                <a href="/" class="active">Home</a>
+                <a href="/predict">Predict</a>
+                <a href="/about">About Us</a>
+            </div>
         </div>
-        {% endif %}
+    </nav>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="hero">
+                <h1>Welcome to Disease Predictor</h1>
+                <p>An intelligent system that helps you identify potential diseases based on your symptoms</p>
+                <a href="/predict" class="btn">Start Prediction</a>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>AI-Powered Diagnosis</h3>
+                    <p>Our advanced machine learning model analyzes your symptoms to provide accurate disease predictions.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-comments"></i>
+                    <h3>Interactive Chatbot</h3>
+                    <p>Get detailed information about your predicted disease through our intelligent chatbot assistant.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Find Medical Help</h3>
+                    <p>Locate nearby doctors and medical centers specialized in treating your condition.</p>
+                </div>
+            </div>
+
+            <div class="instructions">
+                <h2>How to Use</h2>
+                <ol>
+                    <li>Click on "Start Prediction" or navigate to the Predict page</li>
+                    <li>Select your symptoms from the categorized list</li>
+                    <li>Choose at least 3 symptoms for accurate prediction</li>
+                    <li>Click "Predict Disease" to get your results</li>
+                    <li>Use the chatbot to learn more about your predicted disease</li>
+                </ol>
+            </div>
+
+            <div class="future-features">
+                <h2>Coming Soon</h2>
+                <ul>
+                    <li>Detailed disease summaries and treatment information</li>
+                    <li>AI-powered chatbot for disease-related queries</li>
+                    <li>Integration with nearby doctors and medical centers</li>
+                    <li>Multilingual support for global accessibility</li>
+                    <li>Mobile app for on-the-go predictions</li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

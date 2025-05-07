@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Predictor - Predict</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="/" class="logo">
+                <i class="fas fa-heartbeat"></i>
+                Disease Predictor
+            </a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/predict" class="active">Predict</a>
+                <a href="/about">About Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="predict-header">
+                <h1>Predict Disease</h1>
+                <p class="subtitle">Select your symptoms from the list below</p>
+            </div>
+            
+            {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% endif %}
+            
+            <form method="POST" action="{{ url_for('predict') }}" id="prediction-form">
+                <div class="symptoms-container">
+                    {% for category, symptoms in categorized_symptoms.items() %}
+                    <div class="section">
+                        <div class="section-header">
+                            <h3>{{ category }}</h3>
+                        </div>
+                        <div class="section-content">
+                            <div class="checkboxes">
+                                {% for symptom in symptoms %}
+                                <label class="checkbox-wrapper">
+                                    <input type="checkbox" name="{{ symptom }}" id="{{ symptom }}" value="on">
+                                    <span class="checkmark"></span>
+                                    <span class="symptom-label">{{ symptom.replace('_', ' ').title() }}</span>
+                                </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="symptom-count">
+                    Selected Symptoms: <span id="symptom-count">0</span>
+                </div>
+                
+                <button type="submit" class="btn" id="predict-btn" disabled>Predict Disease</button>
+            </form>
+
+            {% if prediction %}
+            <div id="result">
+                <h2>Predicted Disease: {{ prediction }}</h2>
+                <div class="disease-info">
+                    <h3>About this Disease</h3>
+                    <p>Detailed information about the disease will be available soon.</p>
+                </div>
+                <div class="actions">
+                    <button class="btn btn-secondary" onclick="showChatbot()">
+                        <i class="fas fa-comments"></i> Chat with AI Assistant
+                    </button>
+                    <button class="btn btn-secondary" onclick="findDoctors()">
+                        <i class="fas fa-user-md"></i> Find Nearby Doctors
+                    </button>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html> 
