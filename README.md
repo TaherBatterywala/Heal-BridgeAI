@@ -2,6 +2,8 @@
 
 An intelligent disease prediction system that helps users identify potential health conditions based on their symptoms.
 
+🔗 **Live Demo:** [HealBridge AI](https://heal-bridge-ai.onrender.com)
+
 ---
 
 ## 📁 Project Structure
@@ -108,13 +110,21 @@ We are continuously working to enhance HealBridge AI with the following upcoming
 
 ## 🚦 Quick Start
 
+Experience HealBridge AI's disease prediction capabilities in two ways:
+
+1. **Try the Live Demo:**
+   - Visit [https://heal-bridge-ai.onrender.com](https://heal-bridge-ai.onrender.com)
+   - No installation required
+
+2. **Run Locally:**
 ```bash
 git clone https://github.com/yourusername/HealBridge-AI.git
 cd HealBridge-AI
 pip install -r requirements.txt
 python app.py
-```
 Visit [http://localhost:5000](http://localhost:5000) in your browser.
+
+```
 
 ---
 
