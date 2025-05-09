@@ -68,11 +68,10 @@ HealBridge-AI/
 ---
 
 ## 🌐 Web App Preview
-![Healbridge home page](https://github.com/user-attachments/assets/f6f30ec9-142b-4ad5-91e0-30cd![Healbridge about page](https://github.com/user-attachments/assets/0d2440ba-a645-4e9b-83fb-396d1bcc41af)
-76a96e3d)
-![Heal bridge test](https://github.com/user-attachments/assets/9ee95121-626c-49ce-80fe-52af7f60f373)
-![Heal bridge result](https://github.com/user-attachments/assets/5c479c8a-769e-497b-aa73-b337210085dc)
-![Uploading Healbridge about page.jpg…]()
+![Healbridge home page](https://github.com/user-attachments/assets/de8f288c-538b-4fd3-a481-c1984d61643c)
+![Heal bridge test](https://github.com/user-attachments/assets/ef46c9a1-a4ff-4a2c-9e46-e750cde7d354)
+![Heal bridge result](https://github.com/user-attachments/assets/002caec2-f831-4fd5-858c-3fef5f2a68b6)
+![Healbridge about page](https://github.com/user-attachments/assets/ab63f338-138e-4828-a192-a0057dcecc72)
 
 ---
 
