@@ -85,6 +85,27 @@ HealBridge-AI/
 
 ---
 
+## 🔮 Future Updates
+
+We are continuously working to enhance HealBridge AI with the following upcoming features:
+
+- 🤖 **AI Chatbot Integration**
+  - Instant health guidance and support
+  - Detailed disease descriptions
+  - Treatment information and recommendations
+
+- 🌍 **Global Accessibility**
+  - Multilingual support for users worldwide
+  - Localized disease information
+  - Region-specific medical guidance
+
+- 🏥 **Medical Provider Network**
+  - Find specialized doctors for your condition
+  - Locate nearby hospitals and medical centers
+  - Book appointments directly through the platform
+
+---
+
 ## 🚦 Quick Start
 
 ```bash
