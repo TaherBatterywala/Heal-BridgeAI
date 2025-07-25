@@ -89,7 +89,7 @@ HealBridge-AI/
 
 ## 🔮 Future Updates
 
-We are continuously working to enhance HealBridge AI with the following upcoming features:
+We are working to enhance HealBridge AI with the following upcoming features:
 
 - 🤖 **AI Chatbot Integration**
   - Instant health guidance and support
